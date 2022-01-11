@@ -9,7 +9,7 @@ exports.list = (html) => {
 
         const artist = $(el).find('.lf-list__title .lf-link--secondary').text().trim()
 
-        const song = $(el).find('.lf-list__subtitle .lf-link--primary').text().trim()
+        const song = $(el).find('.lf-list__subtitle .lf-link--primary').text().replace('Lyrics', '').trim()
         const link = $(el).find('.lf-list__subtitle .lf-link--primary').attr('href').replace('.html', '')
 
         const date = $(el).find('.lf-list__meta').text().trim()

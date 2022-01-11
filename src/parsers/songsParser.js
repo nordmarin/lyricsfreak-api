@@ -51,7 +51,7 @@ exports.singer = html => {
         }
         rating = getRating(rating)
 
-        const song = $(el).find('.lf-link--primary').text().trim()
+        const song = $(el).find('.lf-link--primary').text().replace('Lyrics', '').trim()
         const time = $(el).find('.lf-list__meta').text().trim()
         let link = $(el).find('.lf-link--primary').attr('href')
         if (link) {
@@ -126,7 +126,7 @@ exports.album = html => {
             rating = rating.replace('px', '')
         }
         rating = getRating(rating)
-        const song = $(el).find('.lf-link--secondary').text().trim()
+        const song = $(el).find('.lf-link--secondary').text().replace('Lyrics', '').trim()
         const time = $(el).find('.lf-list__meta').text().trim()
         let link = $(el).find('.lf-link--secondary').attr('href')
         if (link) {
