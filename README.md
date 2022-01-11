@@ -1,50 +1,50 @@
-# GSMArena API (gsmarena.com)
+# LyricsFreak API  ([lyricsfreak.com](https://lyricsfreak.com))
 
-GSMArena phone specification and finder. This project is still in early development.
+LyricsFreak list of songs and albums and their search. This project is still in early development.
 
-The API basically reads from GSMArena website and results JSON data.
+The API basically reads from LyricsFreak website and results JSON data.
 
 ## Table of Contents
 
 * [Implemented Features](#implemented-features)
 * [Online Demo](#online-demo)
 * [Quick Start](#quick-start)
-* [Brand list](#brand-list)
-* [Device list by brand](#device-list-by-brand)
-* [Device detail](#device-detail)
-* [Searching for device](#searching-for-device)
-* [Top](#top)
-* [Deals](#deals)
-* [Glossary](#glossary)
-* [Glossary detail](#glossary-detail)
+* [Get the first letters of the artists](#get-the-first-letters-of-the-artists)
+* [Get a list of artists by first letter](#get-a-list-of-artists-by-first-letter)
+* [Get albums and songs of the artist](#get-albums-and-songs-of-the-artist)
+* [Get lyrics](#get-lyrics)
+* [Get album information](#get-album-information)
+* [Search for songs](#search-for-songs)
+* [Top 100 songs](#top-100-songs)
+* [New songs](#new-songs)
+* [Updates songs](#updates-songs)
 * [Proxy](#proxy)
 * [Contact](#contact)
 * [License](#license)
 
 ## Implemented Features
 
-- [x] Get all brands
-- [x] Get devices by brand
-- [x] Get device specification
-- [x] Find devices by keyword
-- [x] Top of devices
-- [x] Hot deals
-- [x] Glossary
-- [x] Glossary detail
-- [ ] Find devices by advanced filters
-- [ ] News
-- [ ] Reviews
+- [x] Get the first letters of the artists
+- [x] Get a list of artists by first letter
+- [x] Get albums and songs of the artist
+- [x] Get lyrics
+- [x] Get album information
+- [x] Search for songs
+- [x] Top 100 songs
+- [x] New songs
+- [x] Updates songs
 
 ## Online Demo
 
-* [Brand list](https://gsmarena-api.herokuapp.com/api/brands)
-* [Device list by brand](https://gsmarena-api.herokuapp.com/api/brand/apple-phones-48)
-* [Device detail](https://gsmarena-api.herokuapp.com/api/device/apple_iphone_13_pro_max-11089)
-* [Searching for device](https://gsmarena-api.herokuapp.com/api/search/casio)
-* [Top](https://gsmarena-api.herokuapp.com/api/top)
-* [Deals](https://gsmarena-api.herokuapp.com/api/deals)
-* [Glossary](https://gsmarena-api.herokuapp.com/api/glossary)
-* [Glossary detail](https://gsmarena-api.herokuapp.com/api/glossary/xenon-flash)
+* [Get the first letters of the artists](https://lyricsfreak-api.herokuapp.com/songs/)
+* [Get a list of artists by first letter](https://lyricsfreak-api.herokuapp.com/songs/o/)
+* [Get albums and songs of the artist](https://lyricsfreak-api.herokuapp.com/songs/o/ozzy+osbourne/)
+* [Get lyrics](https://lyricsfreak-api.herokuapp.com/songs/o/ozzy+osbourne/i+just+want+you_20103963)
+* [Get album information](https://lyricsfreak-api.herokuapp.com/songs/o/ozzy+osbourne/album/ozzmosis+1751)
+* [Search for songs](https://lyricsfreak-api.herokuapp.com/search/baby)
+* [Top 100 songs](https://lyricsfreak-api.herokuapp.com/top)
+* [New songs](https://lyricsfreak-api.herokuapp.com/new)
+* [Updates songs](https://lyricsfreak-api.herokuapp.com/updates)
 
 ## Quick Start
 
@@ -53,167 +53,168 @@ npm install
 npm start
 ```
 
-## Brand list
+## Get the first letters of the artists
 
-Endpoint `/api/brands`
+Endpoint `/songs`
 
 ```json
 [
   {
-    "name": "Apple",
-    "devices": "98",
-    "url": "apple-phones-48"
+    "name": "A",
+    "link": "/songs/a"
   }
 ]
 ```
 
-## Device list by brand
+## Get a list of artists by first letter
 
-Endpoint `/api/brand/:brand`, example `/api/brand/apple-phones-48`
+Endpoint `/songs/:letter`, example `/songs/o`
 
 ```json
-{
-  "data": [
-    {
-      "name": "iPhone 13 Pro Max",
-      "img": "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-13-pro-max.jpg",
-      "url": "apple_iphone_13_pro_max-11089",
-      "description": "Apple iPhone 13 Pro Max smartphone. Announced Sep 2021..."
-    }
-  ],
-  "pages": [
-    {
-      "number": 1,
-      "active": true
-    },
-    {
-      "number": 2,
-      "url": "apple-phones-f-48-0-p2"
-    }
-  ],
-  "next": "apple-phones-f-48-0-p2"
-}
+[
+  {
+    "artist": "Ozzy Osbourne",
+    "link": "/songs/o/ozzy+osbourne/",
+    "lyrics": 177
+  }
+]
 ```
 
-## Device detail
+## Get albums and songs of the artist
 
-Endpoint `/api/device/:device`, example `/api/device/apple_iphone_13_pro_max-11089`
+Endpoint `/songs/:letter/:singer`, example `/songs/o/ozzy+osbourne/`
 
 ```json
 {
-  "title": "Apple iPhone 13 Pro Max",
-  "img": "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-13-pro-max.jpg",
-  "img_url": "apple_iphone_13_pro_max-pictures-11089.php",
-  "quick_spec": [
+  "songs": [
     {
-      "name": "Display size",
-      "value": "6.7\""
+      "song": "I Just Want You",
+      "link": "/songs/o/ozzy+osbourne/i+just+want+you_20103963",
+      "time": "4:10",
+      "rating": 4
     }
   ],
-  "spec_detail": [
+  "albums": [
     {
-      "category": "Network",
-      "specs": [
-        {
-          "name": "Technology",
-          "value": "GSM / CDMA / HSPA / EVDO / LTE / 5G"
-        }
-      ]
+      "image": "https://www.ultimate-guitar.com/static/storage/album/images/f/c/fc00f77dc262fabe5e65dd518d6f9629545471e3.jpg",
+      "link": "/songs/o/ozzy+osbourne/album/ozzmosis+1751",
+      "title": "Ozzmosis",
+      "year": 1995,
+      "tracks": 10
     }
   ]
 }
 ```
 
-## Searching for device
+## Get lyrics
 
-Endpoint `/api/search/:device`, example `/api/search/casio`
-
-```json
-[
-  {
-    "name": "Casio G'zOne CA-201L",
-    "img": "https://fdn2.gsmarena.com/vv/bigpic/casio-gzone-ca-201l.jpg",
-    "url": "casio_g_zone_ca_201l-5384",
-    "description": "Casio G'zOne CA-201L Android smartphone. Announced Mar 2013..."
-  }
-]
-```
-
-## Top
-
-Endpoint `/api/top`
-
-```json
-[
-  {
-    "category": "Top 10 by daily interest",
-    "list": [
-      {
-        "position": "1",
-        "name": "Xiaomi 12",
-        "url": "xiaomi_12-11285",
-        "daily_hits": "50,330"
-      }
-    ]
-  }
-]
-```
-
-## Deals
-
-Endpoint `/api/deals`
-
-```json
-[
-  {
-    "image": "https://m.media-amazon.com/images/I/31ICm7rK-hS._SL500_.jpg",
-    "url": "https://www.amazon.co.uk/dp/B08V1NKHZF?tag=gsmcom-21&linkCode=osi&th=1&psc=1",
-    "title": "OnePlus 9",
-    "link": "oneplus_9-10747",
-    "description": "OnePlus 9 5G (UK) SIM-Free Smartphone with Hasselblad Camera for Mobile - Arctic Sky...",
-    "deal": {
-      "memory": "128GB 8GB RAM",
-      "store_img": "https://fdn.gsmarena.com/imgroot/static/stores/amazon-uk1.png",
-      "price": "£ 449.00",
-      "discount": "24.6"
-    },
-    "history": [
-      {
-        "time": "Previous",
-        "price": "£ 479.00"
-      }
-    ]
-  }
-]
-```
-
-## Glossary
-
-Endpoint `/api/glossary`
-
-```json
-[
-  {
-    "letter": "X",
-    "list": [
-      {
-        "link": "xenon-flash",
-        "name": "Xenon flash"
-      }
-    ]
-  }
-]
-```
-
-## Glossary detail
-
-Endpoint `/api/glossary/:term`, example `/api/glossary/xenon-flash`
+Endpoint `/songs/:letter/:singer/:song`, example `/songs/o/ozzy+osbourne/i+just+want+you_20103963`
 
 ```json
 {
-  "title": "Xenon flash - definition",
-  "html": "<p>A xenon flash produces an extremely intense full-spectrum white...</p>"
+  "artist": "Ozzy Osbourne",
+  "title": "I Just Want You",
+  "text": "O. Osbourne/J. Vallance\nThere are no unlockable doors\nThere are no unwinable wars\n",
+  "textArr": [
+    "O. Osbourne/J. Vallance",
+    "There are no unlockable doors",
+    "There are no unwinable wars"
+  ]
 }
+```
+
+## Get album information
+
+Endpoint `/songs/:letter/:singer/album/:album`, example `/songs/o/ozzy+osbourne/album/ozzmosis+1751`
+
+```json
+{
+  "songs": [
+    {
+      "song": "I Just Want You",
+      "link": "/songs/o/ozzy+osbourne/i+just+want+you_20103963",
+      "time": "4:56",
+      "rating": 4
+    }
+  ],
+  "name": "Ozzmosis",
+  "wiki": [
+    {
+      "title": "Vocals",
+      "description": "Ozzy Osbourne"
+    }
+  ],
+  "image": "https://www.ultimate-guitar.com/static/storage/album/images/8/8/885ecb22532abab2ad07a8b9d4fd34aca97e2a32.jpg",
+  "info": [
+    "Album Ozzmosis (1995)",
+    "by Ozzy Osbourne",
+    "Label Epic"
+  ]
+}
+```
+
+## Search for songs
+
+Endpoint `/search/:song`, example `/search/baby`
+
+```json
+[
+  {
+    "artist": {
+      "name": "Justin Bieber",
+      "link": "/songs/j/justin+bieber/"
+    },
+    "song": {
+      "name": "Baby",
+      "link": "/songs/j/justin+bieber/baby_20865507"
+    }
+  }
+]
+```
+
+## Top 100 songs
+
+Endpoint `/top`
+
+```json
+[
+  {
+    "artist": "Kumar Sanu",
+    "song": "Do Dil Mil Rahe Hain",
+    "link": "/songs/k/kumar+sanu/do+dil+mil+rahe+hain_20503872",
+    "hits": 1079
+  }
+]
+```
+
+## New songs
+
+Endpoint `/new`
+
+```json
+[
+  {
+    "artist": "Lewis Capaldi",
+    "song": "Someone You Loved",
+    "link": "/songs/l/lewis+capaldi/someone+you+loved_21585657",
+    "rating": 2
+  }
+]
+```
+
+## Updates songs
+
+Endpoint `/updates`
+
+```json
+[
+  {
+    "artist": "Lana Del Rey",
+    "song": "Looking For America",
+    "link": "/songs/l/lana+del+rey/looking+for+america_1687545",
+    "date": "Jan 11, 2022"
+  }
+]
 ```
 
 ## Proxy
@@ -226,4 +227,4 @@ Created by [@nordmarin](https://t.me/nordmarin) - feel free to contact me!
 
 ## License
 
-GSMArena API is MIT licensed.
+LyricsFreak API is MIT licensed.
