@@ -5,7 +5,7 @@ const doc = {
         title: 'LyricsFreak',
         description: 'Parse LyricsFreak website then return data as JSON',
     },
-    // host: 'localhost:3000',
+    host: process.env.HOST_URL || 'localhost:3000',
     schemes: ['http']
 }
 
