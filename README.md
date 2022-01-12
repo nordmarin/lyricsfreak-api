@@ -8,8 +8,8 @@ The API basically reads from LyricsFreak website and results JSON data.
 
 * [Implemented Features](#implemented-features)
 * [Online Demo](#online-demo)
-* [Quick Start](#quick-start)
 * [Documentation](#documentation)
+* [Quick Start](#quick-start)
 * [Endpoints](#endpoints)
 * [Proxy](#proxy)
 * [Contact](#contact)
