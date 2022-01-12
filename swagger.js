@@ -1,4 +1,5 @@
 const swaggerAutogen = require('swagger-autogen')()
+require('dotenv').config()
 
 const doc = {
     info: {
