@@ -3,14 +3,14 @@ const cheerio = require('cheerio')
 exports.list = (html) => {
     const $ = cheerio.load(html)
 
-    let json = []
+    const json = []
     const songs = $('.lf-list__container').find('.js-sort-table-content-item')
     songs.each((i, el) => {
 
         const artist = $(el).find('.lf-list__title .lf-link--secondary').text().trim()
-
-        const song = $(el).find('.lf-list__subtitle .lf-link--primary').text().replace('Lyrics', '').trim()
-        const link = $(el).find('.lf-list__subtitle .lf-link--primary').attr('href').replace('.html', '')
+        const primaryBlock = $(el).find('.lf-list__subtitle .lf-link--primary')
+        const song = primaryBlock.text().replace('Lyrics', '').trim()
+        const link = primaryBlock.attr('href').replace('.html', '')
 
         let rating = $(el).find('.lf-rating').css('width')
         if (rating) {
@@ -18,10 +18,10 @@ exports.list = (html) => {
         }
         rating = getRating(rating)
 
-        let position = {
+        const position = {
             artist: artist,
             song: song,
-            link: '/songs' + link
+            link: `/songs${link}`
         }
         if (rating) {
             position.rating = rating

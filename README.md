@@ -9,15 +9,8 @@ The API basically reads from LyricsFreak website and results JSON data.
 * [Implemented Features](#implemented-features)
 * [Online Demo](#online-demo)
 * [Quick Start](#quick-start)
-* [Get the first letters of the artists](#get-the-first-letters-of-the-artists)
-* [Get a list of artists by first letter](#get-a-list-of-artists-by-first-letter)
-* [Get albums and songs of the artist](#get-albums-and-songs-of-the-artist)
-* [Get lyrics](#get-lyrics)
-* [Get album information](#get-album-information)
-* [Search for songs](#search-for-songs)
-* [Top 100 songs](#top-100-songs)
-* [New songs](#new-songs)
-* [Updates songs](#updates-songs)
+* [Documentation](#documentation)
+* [Endpoints](#endpoints)
 * [Proxy](#proxy)
 * [Contact](#contact)
 * [License](#license)
@@ -46,6 +39,10 @@ The API basically reads from LyricsFreak website and results JSON data.
 * [New songs](https://lyricsfreak-api.herokuapp.com/new)
 * [Updates songs](https://lyricsfreak-api.herokuapp.com/updates)
 
+## Documentation
+
+Click [here](http://lyricsfreak-api.herokuapp.com/doc) to view the Swagger UI documentation
+
 ## Quick Start
 
 ```bash
@@ -53,7 +50,9 @@ npm install
 npm start
 ```
 
-## Get the first letters of the artists
+## Endpoints
+
+### Get the first letters of the artists
 
 Endpoint `/songs`
 
@@ -66,7 +65,7 @@ Endpoint `/songs`
 ]
 ```
 
-## Get a list of artists by first letter
+### Get a list of artists by first letter
 
 Endpoint `/songs/:letter`, example `/songs/o`
 
@@ -80,7 +79,7 @@ Endpoint `/songs/:letter`, example `/songs/o`
 ]
 ```
 
-## Get albums and songs of the artist
+### Get albums and songs of the artist
 
 Endpoint `/songs/:letter/:singer`, example `/songs/o/ozzy+osbourne/`
 
@@ -106,7 +105,7 @@ Endpoint `/songs/:letter/:singer`, example `/songs/o/ozzy+osbourne/`
 }
 ```
 
-## Get lyrics
+### Get lyrics
 
 Endpoint `/songs/:letter/:singer/:song`, example `/songs/o/ozzy+osbourne/i+just+want+you_20103963`
 
@@ -123,7 +122,7 @@ Endpoint `/songs/:letter/:singer/:song`, example `/songs/o/ozzy+osbourne/i+just+
 }
 ```
 
-## Get album information
+### Get album information
 
 Endpoint `/songs/:letter/:singer/album/:album`, example `/songs/o/ozzy+osbourne/album/ozzmosis+1751`
 
@@ -153,7 +152,7 @@ Endpoint `/songs/:letter/:singer/album/:album`, example `/songs/o/ozzy+osbourne/
 }
 ```
 
-## Search for songs
+### Search for songs
 
 Endpoint `/search/:song`, example `/search/baby`
 
@@ -172,7 +171,7 @@ Endpoint `/search/:song`, example `/search/baby`
 ]
 ```
 
-## Top 100 songs
+### Top 100 songs
 
 Endpoint `/top`
 
@@ -187,7 +186,7 @@ Endpoint `/top`
 ]
 ```
 
-## New songs
+### New songs
 
 Endpoint `/new`
 
@@ -202,7 +201,7 @@ Endpoint `/new`
 ]
 ```
 
-## Updates songs
+### Updates songs
 
 Endpoint `/updates`
 

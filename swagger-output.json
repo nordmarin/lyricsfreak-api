@@ -1,0 +1,219 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "LyricsFreak",
+    "description": "Parse LyricsFreak website then return data as JSON",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/songs": {
+      "get": {
+        "tags": [
+          "Songs"
+        ],
+        "summary": "Get the first letters of the artists",
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/songs/{letter}": {
+      "get": {
+        "tags": [
+          "Songs"
+        ],
+        "summary": "Get a list of artists by first letter",
+        "description": "",
+        "parameters": [
+          {
+            "name": "letter",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "schema": {
+              "type": "string",
+              "example": "o"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/songs/{letter}/{singer}": {
+      "get": {
+        "tags": [
+          "Songs"
+        ],
+        "summary": "Get albums and songs of the artist",
+        "description": "",
+        "parameters": [
+          {
+            "name": "letter",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "schema": {
+              "type": "string",
+              "example": "o"
+            }
+          },
+          {
+            "name": "singer",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "schema": {
+              "type": "string",
+              "example": "ozzy+osbourne"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/songs/{letter}/{singer}/{song}": {
+      "get": {
+        "tags": [
+          "Songs"
+        ],
+        "summary": "Get lyrics",
+        "description": "",
+        "parameters": [
+          {
+            "name": "letter",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "schema": {
+              "type": "string",
+              "example": "o"
+            }
+          },
+          {
+            "name": "singer",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "schema": {
+              "type": "string",
+              "example": "ozzy+osbourne"
+            }
+          },
+          {
+            "name": "song",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "schema": {
+              "type": "string",
+              "example": "i+just+want+you_20103963"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/songs/{letter}/{singer}/album/{album}": {
+      "get": {
+        "tags": [
+          "Songs"
+        ],
+        "summary": "Get album information",
+        "description": "",
+        "parameters": [
+          {
+            "name": "letter",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "schema": {
+              "type": "string",
+              "example": "o"
+            }
+          },
+          {
+            "name": "singer",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "schema": {
+              "type": "string",
+              "example": "ozzy+osbourne"
+            }
+          },
+          {
+            "name": "album",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "schema": {
+              "type": "string",
+              "example": "ozzmosis+1751"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/top": {
+      "get": {
+        "tags": [
+          "Top 100 songs"
+        ],
+        "summary": "Top 100 songs",
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/search/{song}": {
+      "get": {
+        "tags": [
+          "Search for songs"
+        ],
+        "summary": "Search for songs",
+        "description": "",
+        "parameters": [
+          {
+            "name": "song",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "schema": {
+              "type": "string",
+              "example": "baby"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/new": {
+      "get": {
+        "tags": [
+          "New songs"
+        ],
+        "summary": "New songs",
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/updates": {
+      "get": {
+        "tags": [
+          "Updates songs"
+        ],
+        "summary": "Updates songs",
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    }
+  }
+}

@@ -3,13 +3,13 @@ const linkList = require('../utils/list')
 
 exports.all = () => {
     const links = linkList.list()
-    let json = []
+    const json = []
     links.forEach(el => {
         const name = el.name
         const link = el.url
         json.push({
             name: name,
-            link: '/songs' + link
+            link: `/songs${link}`
         })
     })
     return json
@@ -18,17 +18,18 @@ exports.all = () => {
 
 exports.list = html => {
     const $ = cheerio.load(html)
-    let json = []
+    const json = []
 
     const songs = $('body .lf-list__container').find('.js-sort-table-content-item')
     songs.each((i, el) => {
-        const artist = $(el).find('.lf-link--secondary').text().trim()
-        const link = $(el).find('.lf-link--secondary').attr('href')
+        const secondaryBlock = $(el).find('.lf-link--secondary')
+        const artist = secondaryBlock.text().trim()
+        const link = secondaryBlock.attr('href')
         const lyrics = parseInt($(el).find('.lf-list__meta').text().trim())
 
-        let position = {
+        const position = {
             artist: artist,
-            link: '/songs' + link,
+            link: `/songs${link}`,
             lyrics: lyrics
         }
         json.push(position)
@@ -40,8 +41,8 @@ exports.list = html => {
 
 exports.singer = html => {
     const $ = cheerio.load(html)
-    let songsList = []
-    let albumsList = []
+    const songsList = []
+    const albumsList = []
 
     const songs = $('body .lf-list__container').first().find('.js-sort-table-content-item')
     songs.each((i, el) => {
@@ -51,16 +52,17 @@ exports.singer = html => {
         }
         rating = getRating(rating)
 
-        const song = $(el).find('.lf-link--primary').text().replace('Lyrics', '').trim()
+        const primaryBlock = $(el).find('.lf-link--primary')
+        const song = primaryBlock.text().replace('Lyrics', '').trim()
         const time = $(el).find('.lf-list__meta').text().trim()
-        let link = $(el).find('.lf-link--primary').attr('href')
+        let link = primaryBlock.attr('href')
         if (link) {
             link = link.replace('.html', '')
         }
 
-        let position = {
+        const position = {
             song: song,
-            link: '/songs' + link,
+            link: `/songs${link}`,
         }
         if (time) {
             position.time = time
@@ -74,14 +76,16 @@ exports.singer = html => {
     const albums = $('.js-albums-list .lf-list__container').find('.js-sort-table-content-item')
     albums.each((i, el) => {
         const image = $(el).find('.lf-list__cover img').attr('src').replace('@50', '')
-        const link = $(el).find('.lf-list__cell--full a').attr('href')
-        const title = $(el).find('.lf-list__cell--full a').text().trim()
-        const year = parseInt($(el).find('.lf-list__meta').first().text().trim())
-        const tracks = parseInt($(el).find('.lf-list__meta').last().text().trim())
+        const aBlock = $(el).find('.lf-list__cell--full a')
+        const link = aBlock.attr('href')
+        const title = aBlock.text().trim()
+        const metaBlock = $(el).find('.lf-list__meta')
+        const year = parseInt(metaBlock.first().text().trim())
+        const tracks = parseInt(metaBlock.last().text().trim())
 
         albumsList.push({
             image: image,
-            link: '/songs' + link,
+            link: `/songs${link}`,
             title: title,
             year: year,
             tracks: tracks
@@ -116,9 +120,9 @@ exports.song = html => {
 exports.album = html => {
     const $ = cheerio.load(html)
 
-    let wiki = []
-    let songsList = []
-    let albumName = $('.song-info-panel h1').text().split('-')[1].replace('lyrics', '').trim()
+    const wiki = []
+    const songsList = []
+    const albumName = $('.song-info-panel h1').text().split('-')[1].replace('lyrics', '').trim()
     const songs = $('.lfd-content').first().find('.lf-list__container .js-sort-table-content-item')
     songs.each((i, el) => {
         let rating = $(el).find('.lf-rating').css('width')
@@ -126,16 +130,17 @@ exports.album = html => {
             rating = rating.replace('px', '')
         }
         rating = getRating(rating)
-        const song = $(el).find('.lf-link--secondary').text().replace('Lyrics', '').trim()
+        const secondaryBlock = $(el).find('.lf-link--secondary')
+        const song = secondaryBlock.text().replace('Lyrics', '').trim()
         const time = $(el).find('.lf-list__meta').text().trim()
-        let link = $(el).find('.lf-link--secondary').attr('href')
+        let link = secondaryBlock.attr('href')
         if (link) {
             link = link.replace('.html', '')
         }
 
-        let position = {
+        const position = {
             song: song,
-            link: '/songs' + link,
+            link: `/songs${link}`,
         }
         if (time) {
             position.time = time
@@ -161,8 +166,8 @@ exports.album = html => {
         image = image.replace('@115', '').trim()
     }
 
-    let info = []
-    let infoBlock = $('.lf-album__right').find('.lf-album__meta-item')
+    const info = []
+    const infoBlock = $('.lf-album__right').find('.lf-album__meta-item')
     infoBlock.each((i, el) => {
         const text = $(el).text().replace(/\s+/g, ' ').trim()
         info.push(text)

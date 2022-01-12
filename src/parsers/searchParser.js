@@ -2,22 +2,24 @@ const cheerio = require('cheerio')
 
 exports.search = (html) => {
     const $ = cheerio.load(html)
-    let json = []
+    const json = []
 
     const songs = $('.lf-list__container').find('.js-sort-table-content-item')
     songs.each((i, el) => {
-        const artistName = $(el).find('.lf-list__title--secondary a').text().replace('·', '').trim()
-        const artistLink = $(el).find('.lf-list__title--secondary a').attr('href')
+        const artistBlock = $(el).find('.lf-list__title--secondary a')
+        const artistName = artistBlock.text().replace('·', '').trim()
+        const artistLink = artistBlock.attr('href')
         const artist = {
             name: artistName,
-            link: '/songs' + artistLink
+            link: `/songs${artistLink}`
         }
-        const songName = $(el).find('.lf-list__meta a').text().trim()
-        const songLink = $(el).find('.lf-list__meta a').attr('href').replace('.html', '')
+        const songBlock = $(el).find('.lf-list__meta a')
+        const songName = songBlock.text().trim()
+        const songLink = songBlock.attr('href').replace('.html', '')
 
         const song = {
             name: songName,
-            link: '/songs' + songLink
+            link: `/songs${songLink}`
         }
         json.push({
             artist: artist,
